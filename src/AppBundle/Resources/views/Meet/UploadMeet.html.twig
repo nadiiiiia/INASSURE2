@@ -1,43 +1,53 @@
 {% extends '::base.html.twig' %}
 {% block content %}
     {% form_theme form 'bootstrap_3_horizontal_layout.html.twig' %}
-    <div class="row">
-        <div class="col-lg-2">
-        </div>
-        <div class="col-lg-8">
-            <div class="main-box">
-                <h2>{{ 'Upload meets' |trans }}</h2> <br>
-                <div class="container">
-                    {{ form_start(form) }}
 
+
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="panel panel-default">
+                <div class="panel-heading no-border"><span class="title"><h2>{{ 'Upload meets' |trans }}</h2> <br></span></div> <!--  panel title -->
+                <div class="panel-body"><!-- start panel body -->
+                    {{ form_start(form) }}<!-- start Form -->
                     <br>
                     <div class="row">
-                        {{ form_label(form.name) }}
-                        <div class='col-md-9'>
+                        <div class="col-sm-2">
+                            {{ form_label(form.name)}}
+                        </div>
+                        <div class='col-sm-8'>
                             <div class="form-group">
-                                {{ form_widget(form.name) }}
+                                {{ form_widget(form.name, {'attr': {'class': 'input-sm'}}) }}
                             </div>
                         </div>
+                        <div class="col-sm-2"></div>
                     </div>
 
 
                     <div class="row">
-                        {{ form_label(form.file) }}
-                        <div class='col-md-9'>
+                        <div class="col-sm-2">
+                            {{ form_label(form.file) }}
+                        </div>
+
+                        <div class='col-sm-8'>
                             <div class="form-group">
                                 {{ form_widget(form.file) }}
                             </div>
                         </div>
+                        <div class="col-sm-2"></div>
                     </div>
 
                     <br>
-                    {{ form_widget(form.affect, {'attr': {'class': 'btn btn-primary'}}) }}
-                    {{ form_end(form) }}
-                </div>
-                <div class="col-md-10">
-                    <br><br><br><br><br><br><br><br><br>
-                </div>
-            </div>
+                    <div class="row">
+                        <div class="col-sm-10">
+                            {{ form_widget(form.affect, {'attr': {'class': 'btn btn-primary pull-right'}}) }}
+                        </div>
+                        <div class="col-sm-2"></div>
+
+                    </div>
+
+                    {{ form_end(form) }} <!-- End Form -->                   
+                </div><!-- End panel body -->
+            </div> <!-- end panel -->
         </div>
     </div>
 
