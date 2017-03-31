@@ -19,6 +19,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Form\MeetType;
 use Form\FileType;
 
+
 class MeetController extends Controller {
 
     /**
@@ -28,7 +29,7 @@ class MeetController extends Controller {
     function uploadAction(request $request) {
 
         $file = new File();
-        ;
+
         $form = $this->createForm(new FileType(), $file);
         if ($form->handleRequest($request)->isValid()) {
             $em = $this->getDoctrine()->getManager();
@@ -184,13 +185,69 @@ class MeetController extends Controller {
         $html = str_replace("{{localite}}", $meets->getVille(), $html);
         $html = str_replace("{{NPA}}", $meets->getNpa(), $html);
         $html = str_replace("{{tel1}}", $meets->getTel1(), $html);
-        $html = str_replace("{{dateRDV}}", $meets->getCmkRdvDateCommecial(), $html);
+        $html = str_replace("{{natel}}", $meets->getNatel(), $html);
+   
+      //  $date_RDV = $meets->getCmkRdvDateCommecial();
+ 
+           /* $date_RDV = str_replace('/', '-',$meets->getCmkRdvDateCommecial());
+            $d = new DateTime($date_RDV);
+            $timestamp = $d->getTimestamp(); // Unix timestamp
+            $formatted_date = $d->format('D d-m-Y'); // 2003-10-16*/
+         
+        $html = str_replace("{{dateRDV}}",$meets->getCmkRdvDateCommecial(), $html);
+        $html = str_replace("{{heureRDV}}",$meets->getCmkSfieldHMRdvCommercial(), $html);
         $html = str_replace("{{Profession}}", $meets->getTravailleMr(), $html);
+        $html = str_replace("{{nb_personnes}}", $meets->getNombreEnfantModif(), $html);
+        
+        $html = str_replace("{{age}}", $meets->getBirthYearMr(), $html);
+        $html = str_replace("{{ageConj}}", $meets->getBirthYearConjoint(), $html);
+        $html = str_replace("{{AgeEnfant1}}", $meets->getBirthYearEnfant1() , $html);
+        $html = str_replace("{{AgeEnfant2}}", $meets->getBirthYearEnfant2(), $html);
+        $html = str_replace("{{AgeEnfant3}}", $meets->getBirthYearEnfant3(), $html);
+        $html = str_replace("{{AgeEnfant4}}", $meets->getBirthYearEnfant4(), $html);
+        
+        $html = str_replace("{{MrAssBase}}", $meets->getMrCaisseMaladieBase(), $html);
+        $html = str_replace("{{Enf1AssBase}}", $meets->getEnfant1CaisseMaladieBase(), $html);
+        $html = str_replace("{{Enf2AssBase}}", $meets->getEnfant2CaisseMaladieBase(), $html);
+        $html = str_replace("{{Enf3AssBase}}", $meets->getEnfant3CaisseMaladieBase(), $html);
+        $html = str_replace("{{Enf4AssBase}}", $meets->getEnfant4CaisseMaladieBase(), $html);
+          
+        $html = str_replace("{{MrFranchise}}", $meets->getMrFranchise(), $html);
+        $html = str_replace("{{MmeFranchise}}", $meets->getFranchiseMme(), $html);
+        $html = str_replace("{{Enf1Franchise}}", $meets->getEnfant1Franchise(), $html);
+        $html = str_replace("{{Enf2Franchise}}", $meets->getEnfant2Franchise(), $html);
+        $html = str_replace("{{Enf3Franchise}}", $meets->getEnfant3Franchise(), $html);
+        $html = str_replace("{{Enf4Franchise}}", $meets->getEnfant4Franchise(), $html);
+        
         $html = str_replace("{{NomMr}}", $meets->getNom(), $html);
+     
+        $html = str_replace("{{MrAssLCA}}", $meets->getMrCaisseMaladieLCA(), $html);
+        $html = str_replace("{{Enf1AssLCA}}", $meets->getEnfant1CaisseMaladieLCA(), $html);
+        $html = str_replace("{{Enf2AssLCA}}", $meets->getEnfant1CaisseMaladieLCA(), $html);
+        $html = str_replace("{{Enf3AssLCA}}", $meets->getEnfant1CaisseMaladieLCA(), $html);
+        $html = str_replace("{{Enf4AssLCA}}", $meets->getEnfant4CaisseMaladieLCA(), $html);
+        
+        $html = str_replace("{{assVie}}", $meets->getAssuance(), $html);
+        $html = str_replace("{{dateAssVie}}", $meets->getCmkTakingDateCommecial(), $html);
+        $html = str_replace("{{assVoiture}}", $meets->getAssuance(), $html);
+        $html = str_replace("{{dateAssVoiture}}", $meets->getCmkTakingDateCommecial(), $html);
+        $html = str_replace("{{assMenage}}", $meets->getAssuance(), $html);
+        $html = str_replace("{{dateAssMenage}}", $meets->getCmkTakingDateCommecial(), $html);
+        $html = str_replace("{{assJuridique}}", $meets->getAssuance(), $html);
+        $html = str_replace("{{dateAssJuridique}}", $meets->getCmkTakingDateCommecial(), $html);
+
+     
+        $html = str_replace("{{Observation}}", $meets->getCmkSfieldObservationRdvCommercial(), $html);
+        $html = str_replace("{{Agent}}", $meets->getCmkSfieldAgentName(), $html);
+        $html = str_replace("{{appel}}", $meets->getCmkTakingDateCommecial(), $html);
+        
+        
         // PDF
+        $date_now= (new \DateTime())->format('d_m_Y');
         $dompdf = $this->get('slik_dompdf');
         $dompdf->getpdf($html);
-        $dompdf->stream("myfile.pdf");
+        $dompdf->stream("Fiche_RDV_".$date_now.".pdf");
     }
 
 }
+
