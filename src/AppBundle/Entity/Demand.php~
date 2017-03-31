@@ -1,0 +1,150 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints\Date;
+
+/**
+ * Demand
+ *
+ * @ORM\Table(name="demand")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\DemandRepository")
+ */
+class Demand
+{
+    /**
+     * @var int
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="demandsTransmitted")
+     * @ORM\JoinColumn(name="transmitter_id", referencedColumnName="id", onDelete="CASCADE")
+     *
+     */
+    private $transmitter;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="demandsReceived")
+     * @ORM\JoinColumn(name="receiver_id", referencedColumnName="id", onDelete="CASCADE")
+     */
+    private $receiver;
+
+    /**
+     * @ORM\Column(name="subject", type="string")
+     */
+    private $subject;
+
+    /**
+     * @ORM\Column(name="message", type="string")
+     */
+    private $message;
+
+    /**
+     * @ORM\Column(name="date", type="datetime")
+     * @var \DateTime
+     */
+    private $date;
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSubject()
+    {
+        return $this->subject;
+    }
+
+    /**
+     * @return datetime
+     */
+    public function getDate()
+    {
+        return $this->date;
+    }
+
+    /**
+     * @return string
+     */
+    public function getReceiver()
+    {
+        return $this->receiver;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTransmitter()
+    {
+        return $this->transmitter;
+    }
+
+    /**
+     * @param string $subject
+     */
+    public function setSubject($subject)
+    {
+        $this->subject = $subject;
+    }
+
+    /**
+     * @param datetime $date
+     */
+    public function setDate($date)
+    {
+        $this->date = $date;
+    }
+
+    /**
+     * @param string $receiver
+     */
+    public function setReceiver($receiver)
+    {
+        $this->receiver = $receiver;
+    }
+
+    /**
+     * @param int $id
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
+
+    /**
+     * @param string $transmitter
+     */
+    public function setTransmitter($transmitter)
+    {
+        $this->transmitter = $transmitter;
+    }
+
+    /**
+     * @param string $message
+     */
+    public function setMessage($message)
+    {
+        $this->message = $message;
+    }
+
+    /**
+     * @return string
+     */
+    public function getMessage()
+    {
+        return $this->message;
+    }
+}

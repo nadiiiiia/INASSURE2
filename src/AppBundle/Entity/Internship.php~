@@ -1,0 +1,240 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints\Date;
+
+/**
+ * Internship
+ *
+ * @ORM\Table(name="internship")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\InternshipRepository")
+ */
+class Internship
+{
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @ORM\Column(name="subject", type="string")
+     */
+    private $subject;
+
+    /**
+     * @ORM\Column(name="starting_date", type="date",nullable=true)
+     */
+    private $startingDate;
+
+    /**
+     * @ORM\Column(name="ending_date", type="date",nullable=true)
+     */
+    private $endingDate;
+    /**
+     * @ORM\OneToMany(targetEntity="Task", mappedBy="internship")
+     *
+     */
+    private $tasks;
+
+    /**
+     * @ORM\OneToOne(targetEntity="User", inversedBy="internship", cascade={"remove","persist"})//delete the trainnee when deleting the interniship
+     * @ORM\JoinColumn(name="trainee_id", referencedColumnName="id", onDelete="CASCADE")//the reverse
+     */
+    private $trainee;
+    /**
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="internships")
+     * @ORM\JoinColumn(name="supervisor_id", referencedColumnName="id", onDelete="CASCADE")
+     *
+     */
+    private $supervisor;
+
+    /**
+     * @ORM\OneToOne(targetEntity="Evaluation", mappedBy="internship")
+     */
+    private $evaluation;
+
+    /**
+     * @return mixed
+     */
+    public function getEvaluation()
+    {
+        return $this->evaluation;
+    }
+
+    /**
+     * @param mixed $evaluation
+     */
+    public function setEvaluation($evaluation)
+    {
+        $this->evaluation = $evaluation;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTrainee()
+    {
+        return $this->trainee;
+    }
+
+    /**
+     * @param mixed $trainee
+     */
+    public function setTrainee($trainee)
+    {
+        $this->trainee = $trainee;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSupervisor()
+    {
+        return $this->supervisor;
+    }
+
+    /**
+     * @param mixed $supervisor
+     */
+    public function setSupervisor($supervisor)
+    {
+        $this->supervisor = $supervisor;
+    }
+
+
+    /**
+     * @return mixed
+     */
+    public function getTasks()
+    {
+        return $this->tasks;
+    }
+
+    /**
+     * @param mixed $tasks
+     */
+    public function setTasks($tasks)
+    {
+        $this->tasks = $tasks;
+    }
+    /**
+     * @param date $startingDate
+     */
+    public function setStartingDate($startingDate)
+    {
+        $this->startingDate = $startingDate;
+    }
+
+    /**
+     * @param date $endingDate
+     */
+    public function setEndingDate($endingDate)
+    {
+        $this->endingDate = $endingDate;
+    }
+
+    /**
+     * @param String $subject
+     */
+    public function setSubject($subject)
+    {
+        $this->subject = $subject;
+    }
+
+    /**
+     * @param int $id
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+
+    }
+
+    /**
+     * GetStartingDate
+     * @return date
+     */
+    public function getStartingDate()
+    {
+        return $this->startingDate;
+    }
+
+    /**
+     * GetEndingDate
+     * @return date
+     */
+    public function getEndingDate()
+    {
+        return $this->endingDate;
+    }
+
+    /**
+     * Get Subject
+     * @return String
+     */
+    public function getSubject()
+    {
+        return $this->subject;
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Add tasks
+     *
+     * @param \AppBundle\Entity\Task $tasks
+     * @return User
+     */
+    public function addTasks(\AppBundle\Entity\Task $tasks)
+    {
+        $this->tasks[] = $tasks;
+
+        return $this;
+    }
+
+    /**
+     * Remove tasks
+     *
+     * @param \AppBundle\Entity\Task $tasks
+     */
+    public function removeTasks(\AppBundle\Entity\Task $tasks)
+    {
+        $this->tasks->removeElement($tasks);
+    }
+    /**
+     * Add evaluation
+     *
+     * @param \AppBundle\Entity\Evaluation $evaluation
+     * @return User
+     */
+    public function addEvaluation(\AppBundle\Entity\Evaluation $evaluation)
+    {
+        $this->evaluation[] = $evaluation;
+
+        return $this;
+    }
+
+    /**
+     * Remove evaluation
+     *
+     * @param \AppBundle\Entity\Evaluation $evaluation
+     */
+    public function removeEvaluation(\AppBundle\Entity\Evaluation $evaluation)
+    {
+        $this->evaluation->removeElement($evaluation);
+    }
+}

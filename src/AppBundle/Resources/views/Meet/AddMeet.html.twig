@@ -1,0 +1,197 @@
+{% extends '::base.html.twig' %}
+{% block content %}
+    {% form_theme form 'bootstrap_3_horizontal_layout.html.twig' %}
+    <div class="row">
+        <div class="col-lg-1">
+        </div>
+        <div class="col-lg-9">
+            <div class="main-box">
+                <h2>    </h2><br/>
+                <div class="container">
+                    {{ form_start(form) }}
+                    <div class="row">
+                        <div class='col-md-9'>
+                            <b>customerName</b>
+                            <div class="form-group">
+                                {{ form_widget(form.nom) }}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class='col-md-9'>
+                            <b>tel1</b>
+                            <div class="form-group">
+                                {{ form_widget(form.tel1) }}
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class='col-md-9'>
+                            <b>tel2</b>
+                            <div class="form-group">
+                                {{ form_widget(form.tel2) }}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class='col-md-9'>
+                            <b>tel3</b>
+                            <div class="form-group">
+                                {{ form_widget(form.tel3) }}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class='col-md-9'>
+                            <b>fax1</b>
+                            <div class="form-group">
+                                {{ form_widget(form.fax1) }}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class='col-md-9'>
+                            <b>fax2</b>
+                            <div class="form-group">
+                                {{ form_widget(form.fax2) }}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class='col-md-9'>
+                            <b>surname</b>
+                            <div class="form-group">
+                                {{ form_widget(form.surname) }}
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class='col-md-9'>
+                            <b>adresse</b>
+                            <div class="form-group">
+                                {{ form_widget(form.adresse) }}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class='col-md-9'>
+                            <b>ville</b>
+                            <div class="form-group">
+                                {{ form_widget(form.ville) }}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class='col-md-9'>
+                            <b>npa</b>
+                            <div class="form-group">
+                                {{ form_widget(form.npa) }}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class='col-md-9'>
+                            <b>nomModif</b>
+                            <div class="form-group">
+                                {{ form_widget(form.nomModif) }}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class='col-md-9'>
+                            <b>prenomModif</b>
+                            <div class="form-group">
+                                {{ form_widget(form.prenomModif) }}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class='col-md-9'>
+                            <b>age</b>
+                            <div class="form-group">
+                                {{ form_widget(form.age) }}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class='col-md-9'>
+                            <b>ageEnfant1</b>
+                            <div class="form-group">
+                                {{ form_widget(form.ageEnfant1) }}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class='col-md-9'>
+                            <b>ageEnfant2</b>
+                            <div class="form-group">
+                                {{ form_widget(form.ageEnfant2) }}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class='col-md-9'>
+                            <b>ageEnfant3</b>
+                            <div class="form-group">
+                                {{ form_widget(form.ageEnfant3) }}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class='col-md-9'>
+                            <b>ageEnfant4</b>
+                            <div class="form-group">
+                                {{ form_widget(form.ageEnfant4) }}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class='col-md-9'>
+                            <b>ageConjoint</b>
+                            <div class="form-group">
+                                {{ form_widget(form.ageConjoint) }}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class='col-md-9'>
+                            <b>cmkSfieldfHTreatment</b>
+                            <div class="form-group">
+                                {{ form_widget(form.cmkSfieldfHTreatment) }}
+                            </div>
+                        </div>
+                    </div>
+
+                    <br>
+                    {% block save %}
+                        {{ form_widget(form.save, {'attr': {'class': 'btn btn-primary'}}) }}
+                        <a class="btn btn-danger" href=""{{ path('add_meet') }}"
+                        role="button">{{ 'Reset'|trans }}</a>
+                        {{ form_end(form) }}
+                    {% endblock %}
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+{% endblock %}

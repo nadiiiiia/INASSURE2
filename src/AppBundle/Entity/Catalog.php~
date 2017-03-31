@@ -1,0 +1,172 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use DateTime;
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints\Date;
+/**
+ * Catalog
+ *
+ * @ORM\Table(name="catalog")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\CatalogRepository")
+ */
+class Catalog
+{
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @ORM\Column(name="subject", type="string")
+     */
+    private $subject;
+
+    /**
+     * @ORM\Column(name="mission", type="string")
+     */
+    private $mission;
+
+    /**
+     * @ORM\Column(name="starting_date", type="datetime")
+     * @var \DateTime
+     */
+    private $startingDate;
+    /**
+     * @ORM\Column(name="ending_date", type="datetime")
+     *  @var \DateTime
+     */
+    private $endingDate;
+
+    /**
+     *
+     * @ORM\Column(name="technical_knowledge", type="string")
+     */
+    private $technicalKnowledge;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="catalogs")
+     * @ORM\JoinColumn(name="supervisor_id", referencedColumnName="id", onDelete="CASCADE")
+     *
+     */
+    private $supervisor;
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSubject()
+    {
+        return $this->subject;
+    }
+
+    /**
+     * @return string
+     */
+    public function getMission()
+    {
+        return $this->mission;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTechnicalKnowledge()
+    {
+        return $this->technicalKnowledge;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSupervisor()
+    {
+        return $this->supervisor;
+    }
+
+    /**
+     * @param int $id
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
+
+    /**
+     * @param string $subject
+     */
+    public function setSubject($subject)
+    {
+        $this->subject = $subject;
+    }
+
+    /**
+     * @param string $mission
+     */
+    public function setMission($mission)
+    {
+        $this->mission = $mission;
+    }
+
+    /**
+     * @param string $technicalKnowledge
+     */
+    public function setTechnicalKnowledge($technicalKnowledge)
+    {
+        $this->technicalKnowledge = $technicalKnowledge;
+    }
+
+    /**
+     * @param string $supervisor
+     */
+    public function setSupervisor($supervisor)
+    {
+        $this->supervisor = $supervisor;
+    }
+
+    /**
+     * @return datetime
+     */
+    public function getStartingDate()
+    {
+        return $this->startingDate;
+    }
+
+    /**
+     * @param datetime $startingDate
+     */
+    public function setStartingDate($startingDate)
+    {
+        $this->startingDate = $startingDate;
+    }
+
+    /**
+     * @return datetime
+     */
+    public function getEndingDate()
+    {
+        return $this->endingDate;
+    }
+
+    /**
+     * @param datetime $endingDate
+     */
+    public function setEndingDate($endingDate)
+    {
+        $this->endingDate = $endingDate;
+    }
+}

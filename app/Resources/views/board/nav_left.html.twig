@@ -1,0 +1,74 @@
+<div class="am-left-sidebar">
+         <!--menu left--> 
+        <div class="content">
+          <div class="am-logo"></div>
+          <ul class="sidebar-elements">
+              <li class="active">
+                  <a href={{ path('fiche_user') }}>
+                      <i class="fa fa-user"></i>
+                      <span>Fiche</span>
+                  </a>
+              </li>
+
+              {% if is_granted('ROLE_DIRECTIONFR') %}
+                  <li>
+                      <a href="">
+                          <i class="fa fa-users"></i>
+                          <span>{{ 'Users' |trans }}</span>
+                      </a>
+                  </li>
+
+                  <li>
+                      <a href="">
+                          <i class="fa fa-users"></i>
+                          <span>{{ 'Meet' |trans }}</span>
+                      </a>
+
+
+                      <ul class="submenu">
+                          <li>
+                              <a href="">
+                                  {{ 'List meets' |trans }}
+                              </a>
+                          </li>
+                      </ul>
+                  </li>
+              {% endif %}
+
+              {% if is_granted('ROLE_AGENTTFR') %}
+                <li>
+                  <a href={{ path('add_meet') }}>
+                      {{ 'Add meet' |trans }}
+                  </a>
+                </li>
+
+                <li>
+                  <a href={{ path('upload_meets') }}>
+                      {{ 'Import file meets' |trans }}
+                  </a>
+                </li>
+
+                <li>
+                  <a href={{ path('list_meet') }}>
+                      {{ 'List meets' |trans }}
+                  </a>
+                </li>
+
+                <li>
+                  <a href={{ path('import_meet') }}>
+                      {{ 'Export meets' |trans }} Excel
+                  </a>
+                </li>
+
+              <li>
+                  <a href={{ path('statistics_view') }}>
+                      {{ 'Statistics' |trans }}
+                  </a>
+              </li>
+              {% endif %}
+          </ul>
+
+          <!--Sidebar bottom content-->
+           </div>
+        </div>
+      </div>

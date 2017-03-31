@@ -1,0 +1,90 @@
+{% extends '::base.html.twig' %}
+{% block content %}
+    <div class="col-md-12" id="content-wrapper">
+        <div class="row">
+            <div class="col-lg-12">
+                {#<h1> {{ 'Profil' |trans }}</h1>#}
+                <h1></h1>
+                <div class="row" id="user-profile">
+                    <div class="col-lg-2 col-md-4 col-sm-4">
+                        <div class="main-box clearfix">
+                            {% if user.pictureName %}
+                                <img src="{{ asset(user.getWebPath()) }}" style="height:10%; width:100%;"/>
+                            {% else %}
+                            {% endif %}
+                            {#<div class="col-md-10"></div>#}
+                            <h1></h1>
+
+                            {% block pictureupload %}
+                                {{ form_start(form) }}
+                                <div class="row">
+                                    <div class='col-md-9'>
+                                        <div class="form-group">
+                                            {{ form_widget(form.file) }}
+                                        </div>
+                                    </div>
+                                </div>
+                                {{ form_widget(form) }}
+                            {% endblock %}
+                        </div>
+                    </div>
+                    <div class="col-lg-10 col-md-9 col-sm-9">
+                        <div class="main-box clearfix">
+                            <div class="profile-header">
+                                <h3><span>{{ 'User Info' |trans }}</span></h3>
+                            </div>
+                            <div class="row profile-user-info">
+                                <div class="col-md-1"></div>
+                                {% for i in infos %}
+                                <div class="col-sm-8">
+                                    <div class="profile-user-details clearfix">
+                                        <div class="profile-user-details-label">
+                                            {{ 'Name' |trans }}
+                                        </div>
+                                        <div class="profile-user-details-value">
+                                            {{ i.username }}
+                                        </div>
+                                    </div>
+                                    <div class="profile-user-details clearfix">
+                                        <div class="profile-user-details-label">
+                                            Email
+                                        </div>
+                                        <div class="profile-user-details-value">
+                                            {{ i.email }}
+                                        </div>
+                                    </div>
+                                    <div class="profile-user-details clearfix">
+                                        <div class="profile-user-details-label">
+                                            {{ 'Address' |trans }}
+                                        </div>
+                                        <div class="profile-user-details-value">
+                                            {{ i.address }} <br>
+                                        </div>
+                                    </div>
+                                    <div class="profile-user-details clearfix">
+                                        <div class="profile-user-details-label">
+                                            {{ 'Phone number' |trans }}
+                                        </div>
+                                        <div class="profile-user-details-value">
+                                            {{ i.phoneNumber }} <br>
+                                        </div>
+                                    </div>
+                                    <div class="profile-user-details clearfix">
+
+                                        {% endfor %}
+                                        <br>
+                                        <br>
+                                        {% block password %}
+                                            <a href="{{ path('fos_user_resetting_request') }}">{{ "change password" |trans }}
+                                                ?</a>
+                                        {% endblock %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

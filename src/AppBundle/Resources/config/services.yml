@@ -1,0 +1,18 @@
+parameters:
+#    parameter_name: value
+services:
+    app.user_manager:
+        class: AppBundle\Manager\UserManager
+        arguments: [ @doctrine.orm.entity_manager  ]
+    app.file_manager:
+        class: AppBundle\Manager\FileManager
+        arguments: [ @doctrine.orm.entity_manager  ]
+    app.meet_manager:
+          class: AppBundle\Manager\MeetManager
+          arguments: [ @doctrine.orm.entity_manager  ]
+    redirect.after.login:
+        class: AppBundle\Component\Redirection\AfterLoginRedirection
+        arguments: [@router]
+    redirect.after.logout:
+        class: AppBundle\Component\Redirection\AfterLogoutRedirection
+        arguments: [@router, @security.context]

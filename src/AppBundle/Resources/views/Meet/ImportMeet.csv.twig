@@ -1,0 +1,4 @@
+id;Nom;prenom;adresse;ville;RDV;modifier par;modifier le;creer par;creer le;creer par
+{% for i in meets %}
+    {{ i.id }};{{ i.nom}};{{ i.surname }};{{ i.Adresse }};{{ i.Ville }};{{ i.cmkRdvDateCommecial  }};{{ i.updatedBy }};{{ i.modifiedAt |date('d-m-Y') }};{{ i.createdBy }};{{ i.createdAt |date('d-m-Y') }}
+{% endfor %}

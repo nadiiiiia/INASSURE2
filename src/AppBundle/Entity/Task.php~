@@ -1,0 +1,255 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Task
+ *
+ * @ORM\Table(name="task")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\TaskRepository")
+ */
+class Task
+{
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @ORM\Column(name="name", type="string")
+     */
+    private $name;
+
+
+    /**
+     * @ORM\Column(name="state", type="string")
+     */
+    private $state;
+    /**
+     * @ORM\Column(name="description", type="string")
+     */
+    private $description;
+    /**
+     * @ORM\Column(name="$number_fixed", type="string")
+     */
+    private $numberFixed;
+    /**
+     * @ORM\Column(name="duration_fixed", type="string")
+     */
+    private $durationFixed;
+    /**
+     * @ORM\Column(name="$number_passed", type="string", nullable=true)
+     */
+    private $numberPassed;
+    /**
+     * @ORM\Column(name="duration_passed", type="string", nullable=true)
+     */
+    private $durationPassed;
+    /**
+     * @ORM\Column(name="note", type="string", nullable=true)
+     */
+    private $note;
+
+
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Internship", inversedBy="tasks")
+     * @ORM\JoinColumn(name="internship_id", referencedColumnName="id", onDelete="CASCADE")
+     *
+     */
+    private $internship;
+    /**
+     * @ORM\Column(name="date_creation", type="datetime", nullable=true)
+     */
+    private $dateCreation;
+
+    /**
+     * Task constructor.
+     *
+     */
+    public function __construct()
+    {
+        $this->state ="todo";
+        $this->internship = new ArrayCollection();
+
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * @param string $name
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * @param mixed $description
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getInternship()
+    {
+        return $this->internship;
+    }
+
+    /**
+     * @param mixed $internship
+     */
+    public function setInternship($internship)
+    {
+        $this->internship = $internship;
+    }
+
+
+    /**
+     * @return mixed
+     */
+    public function getState()
+    {
+        return $this->state;
+    }
+
+    /**
+     * @param mixed $state
+     */
+    public function setState($state)
+    {
+        $this->state = $state;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getNumberFixed()
+    {
+        return $this->numberFixed;
+    }
+
+    /**
+     * @param mixed $numberFixed
+     */
+    public function setNumberFixed($numberFixed)
+    {
+        $this->numberFixed = $numberFixed;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDurationFixed()
+    {
+        return $this->durationFixed;
+    }
+
+    /**
+     * @param mixed $durationFixed
+     */
+    public function setDurationFixed($durationFixed)
+    {
+        $this->durationFixed = $durationFixed;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getNumberPassed()
+    {
+        return $this->numberPassed;
+    }
+
+    /**
+     * @param mixed $numberPassed
+     */
+    public function setNumberPassed($numberPassed)
+    {
+        $this->numberPassed = $numberPassed;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDurationPassed()
+    {
+        return $this->durationPassed;
+    }
+
+    /**
+     * @param mixed $durationPassed
+     */
+    public function setDurationPassed($durationPassed)
+    {
+        $this->durationPassed = $durationPassed;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getNote()
+    {
+        return $this->note;
+    }
+
+    /**
+     * @param mixed $note
+     */
+    public function setNote($note)
+    {
+        $this->note = $note;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDateCreation()
+    {
+        return $this->dateCreation;
+    }
+
+    /**
+     * @param mixed $dateCreation
+     */
+    public function setDateCreation($dateCreation)
+    {
+        $this->dateCreation = $dateCreation;
+    }
+}

@@ -1,0 +1,167 @@
+{% extends '::base.html.twig' %}
+{% block content %}
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+
+    <div class="row">
+        <div class="row">
+            <div class="col-md-6">
+                <h1>{{ 'Statistics' |trans }}</h1>
+            </div>
+            
+            <div class="col-md-6 text-right">
+                <br>
+                <div class="btn-group">
+                    <button id="BarChartBtn" type="button" class="btn btn-default" onclick="RenderBarChart()"><span class="fa fa-bar-chart"></span></button>
+                    <button id="AreaChartBtn" type="button" class="btn btn-default" onclick="RenderAreaChart()"><span class="fa fa-area-chart"></span></button>
+                </div>
+            </div>
+
+            <div class="col-md-12">
+                <div id="chartContainer" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function RenderBarChart() {
+            $.get("{{ path('statistics_data') }}", function(data) {
+                var Data = data.map(function(day) {
+                    return new Date(day).getDay();
+                });
+
+                Data.push(0, 1, 2, 3, 4, 5, 6)
+                
+                function MapReduce(arr) {
+                    var a = [], b = [], prev;
+
+                    arr.sort();
+                    for (var i = 0; i < arr.length; i++) {
+                        if (arr[i] !== prev) {
+                            a.push(arr[i]);
+                            b.push(0);
+                        } else {
+                            b[b.length - 1]++;
+                        }
+                        prev = arr[i];
+                    }
+
+                    return [a, b];
+                }
+
+                Data = MapReduce(Data);
+                console.log(Data);
+                Highcharts.chart('chartContainer', {
+                    chart: {
+                        type: 'column'
+                    },
+                    title: {
+                        text: 'Stats'
+                    },
+                    xAxis: {
+                        categories: [
+                            'Sunday',
+                            'Monday',
+                            'Tuesday',
+                            'Wednesday',
+                            'Thursday',
+                            'Friday',
+                            'Saturday'
+                        ]
+                    },
+                    yAxis: {
+                        min: 0,
+                        title: {
+                            text: ''
+                        }
+                    },
+                    tooltip: {
+                        headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                        pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                            '<td style="padding:0"><b>{point.y:.1f}</b></td></tr>',
+                        footerFormat: '</table>',
+                        shared: true,
+                        useHTML: true
+                    },
+                    plotOptions: {
+                        column: {
+                            pointPadding: 0.2,
+                            borderWidth: 0
+                        }
+                    },
+                    series: [
+                        {data: Data[1]}
+                    ]
+                });
+            });
+        }
+
+        function RenderAreaChart() {
+            $.get("{{ path('statistics_data') }}", function(data) {
+                var Data = data.map(function(day) {
+                    return new Date(day).getDay();
+                });
+
+                Data.push(0, 1, 2, 3, 4, 5, 6)
+                
+                function MapReduce(arr) {
+                    var a = [], b = [], prev;
+
+                    arr.sort();
+                    for (var i = 0; i < arr.length; i++) {
+                        if (arr[i] !== prev) {
+                            a.push(arr[i]);
+                            b.push(0);
+                        } else {
+                            b[b.length - 1]++;
+                        }
+                        prev = arr[i];
+                    }
+
+                    return [a, b];
+                }
+
+                Data = MapReduce(Data);
+                console.log(Data);
+
+                Highcharts.chart('chartContainer', {
+                    chart: {
+                        type: 'area'
+                    },
+                    title: {
+                        text: 'Area Chart'
+                    },
+                    xAxis: {
+                        categories: [
+                            'Sunday',
+                            'Monday',
+                            'Tuesday',
+                            'Wednesday',
+                            'Thursday',
+                            'Friday',
+                            'Saturday'
+                        ]
+                    },
+                    yAxis: {
+                        labels: {
+                            formatter: function () {
+                                return this.value.value;
+                            }
+                        }
+                    },
+                    tooltip: {
+                        pointFormat: '{series.name}  <b>{point.y:,.0f}</b><br/>'
+                    },
+                    plotOptions: {
+                        
+                    },
+                    series: [{
+                        data: Data[1]
+                    }]
+                });
+            })
+        }
+
+        RenderAreaChart();
+    </script>
+{% endblock %}

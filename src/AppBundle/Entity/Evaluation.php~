@@ -1,0 +1,649 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Evaluation
+ *
+ * @ORM\Table(name="evaluation")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\EvaluationRepository")
+ */
+class Evaluation
+{
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @ORM\OneToOne(targetEntity="Internship", inversedBy="evaluation")
+     * @ORM\JoinColumn(name="internship_id", referencedColumnName="id", onDelete="CASCADE")//deleting the evaluation when deleting bthe internship
+     */
+    private $internship;
+
+    /**
+     * @ORM\Column(name="integration_mark", type="string")
+     *
+     */
+    private $integrationMark;
+    /**
+     * @ORM\Column(name="integration_comment", type="string", nullable=true)
+     *
+     */
+    private $integrationComment;
+
+    /**
+     * @ORM\Column(name="attendance_mark", type="string")
+     *
+     */
+    private $attendanceMark;
+
+    /**
+     * @ORM\Column(name="attendance_comment", type="string", nullable=true)
+     *
+     */
+    private $attendanceComment;
+
+    /**
+     * @ORM\Column(name="learningt_mark", type="string")
+     *
+     */
+    private $learningtMark;
+    /**
+     * @ORM\Column(name="learningf_mark", type="string")
+     *
+     */
+    private $learningfMark;
+    /**
+     * @ORM\Column(name="learningm_mark", type="string")
+     *
+     */
+    private $learningmMark;
+    /**
+     * @ORM\Column(name="learning_comment", type="string", nullable=true)
+     *
+     */
+    private $learningComment;
+
+    /**
+     * @ORM\Column(name="motivation_mark", type="string")
+     *
+     */
+    private $motivationMark;
+
+    /**
+     * @ORM\Column(name="motivation_comment", type="string", nullable=true)
+     *
+     */
+    private $motivationComment;
+
+    /**
+     * @ORM\Column(name="efficiency_mark", type="string")
+     *
+     */
+    private $efficiencyMark;
+    /**
+     * @ORM\Column(name="efficiency_comment", type="string", nullable=true)
+     *
+     */
+    private $efficiencyComment;
+
+    /**
+     * @ORM\Column(name="autonomy_mark", type="string")
+     *
+     */
+    private $autonomyMark;
+    /**
+     * @ORM\Column(name="autonomy_comment", type="string", nullable=true)
+     *
+     */
+    private $autonomyComment;
+
+    /**
+     * @ORM\Column(name="workcompleteness_mark", type="string")
+     *
+     */
+    private $workcompletenessMark;
+    /**
+     * @ORM\Column(name="workcompleteness_comment", type="string", nullable=true)
+     *
+     */
+    private $workcompletenessComment;
+
+    /**
+     * @ORM\Column(name="workquality_mark", type="string")
+     *
+     */
+    private $workqualityMark;
+    /**
+     * @ORM\Column(name="workquality_comment", type="string", nullable=true)
+     *
+//     */
+    private $workqualityComment;
+
+    /**
+     * @ORM\Column(name="communication_mark", type="string")
+     *
+     */
+    private $communicationMark;
+    /**
+     * @ORM\Column(name="communication_comment", type="string", nullable=true)
+     *
+     */
+    private $communicationComment;
+
+    /**
+     * @ORM\Column(name="supervisionattitude_mark", type="string")
+     *
+     */
+    private $supervisionattitudeMark;
+    /**
+     * @ORM\Column(name="supervisionattitude_comment", type="string", nullable=true)
+     *
+     */
+    private $supervisionattitudeComment;
+
+    /**
+     * @ORM\Column(name="golbalapprication_mark", type="string")
+     *
+     */
+    private $golbalappricationMark;
+
+    /**
+     * @ORM\Column(name="strengths_comment", type="string", nullable=true)
+     *
+     */
+    private $strengthsComment;
+    /**
+     * @ORM\Column(name="weakness_comment", type="string", nullable=true)
+     *
+     */
+    private $weaknessComment;
+
+    /**
+     * @ORM\Column(name="integration", type="string")
+     *
+     */
+    private $integration;
+
+
+    /**
+     * @ORM\Column(name="date", type="datetime")
+     *@var \DateTime
+     */
+    private $date;
+
+    /**
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param int $id
+     * @return Evaluation
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getIntegrationMark()
+    {
+        return $this->integrationMark;
+    }
+
+    /**
+     * @param mixed $integrationMark
+     */
+    public function setIntegrationMark($integrationMark)
+    {
+        $this->integrationMark = $integrationMark;
+    }
+
+
+    /**
+     * @return mixed
+     */
+    public function getIntegrationComment()
+    {
+        return $this->integrationComment;
+    }
+
+    /**
+     * @param mixed $integrationComment
+     */
+    public function setIntegrationComment($integrationComment)
+    {
+        $this->integrationComment = $integrationComment;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAttendanceMark()
+    {
+        return $this->attendanceMark;
+    }
+
+    /**
+     * @param mixed $attendanceMark
+     */
+    public function setAttendanceMark($attendanceMark)
+    {
+        $this->attendanceMark = $attendanceMark;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAttendanceComment()
+    {
+        return $this->attendanceComment;
+    }
+
+    /**
+     * @param mixed $attendanceComment
+     */
+    public function setAttendanceComment($attendanceComment)
+    {
+        $this->attendanceComment = $attendanceComment;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getLearningtMark()
+    {
+        return $this->learningtMark;
+    }
+
+    /**
+     * @param mixed $learningtMark
+     */
+    public function setLearningtMark($learningtMark)
+    {
+        $this->learningtMark = $learningtMark;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getLearningfMark()
+    {
+        return $this->learningfMark;
+    }
+
+    /**
+     * @param mixed $learningfMark
+     */
+    public function setLearningfMark($learningfMark)
+    {
+        $this->learningfMark = $learningfMark;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getLearningmMark()
+    {
+        return $this->learningmMark;
+    }
+
+    /**
+     * @param mixed $learningmMark
+     */
+    public function setLearningmMark($learningmMark)
+    {
+        $this->learningmMark = $learningmMark;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getLearningComment()
+    {
+        return $this->learningComment;
+    }
+
+   /**
+    * @param mixed $learningComment
+    */
+    public function setLearningComment($learningComment)
+    {
+        $this->learningComment = $learningComment;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getMotivationMark()
+    {
+        return $this->motivationMark;
+    }
+
+    /**
+     * @param mixed $motivationMark
+     */
+    public function setMotivationMark($motivationMark)
+    {
+        $this->motivationMark = $motivationMark;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getMotivationComment()
+    {
+        return $this->motivationComment;
+    }
+
+    /**
+     * @param mixed $motivationComment
+     */
+    public function setMotivationComment($motivationComment)
+    {
+        $this->motivationComment = $motivationComment;
+    }
+
+    /**
+    /* @return mixed
+     */
+    public function getEfficiencyMark()
+    {
+        return $this->efficiencyMark;
+    }
+
+    /**
+     * @param mixed $efficiencyMark
+     */
+    public function setEfficiencyMark($efficiencyMark)
+    {
+        $this->efficiencyMark = $efficiencyMark;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getEfficiencyComment()
+    {
+        return $this->efficiencyComment;
+    }
+
+    /**
+     * @param mixed $efficiencyComment
+     */
+    public function setEfficiencyComment($efficiencyComment)
+    {
+        $this->efficiencyComment = $efficiencyComment;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAutonomyMark()
+    {
+        return $this->autonomyMark;
+    }
+
+    /**
+     * @param mixed $autonomyMark
+     */
+    public function setAutonomyMark($autonomyMark)
+    {
+        $this->autonomyMark = $autonomyMark;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAutonomyComment()
+    {
+        return $this->autonomyComment;
+    }
+
+    /**
+     * @param mixed $autonomyComment
+     */
+    public function setAutonomyComment($autonomyComment)
+    {
+        $this->autonomyComment = $autonomyComment;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getWorkcompletenessMark()
+    {
+        return $this->workcompletenessMark;
+    }
+
+    /**
+     * @param mixed $workcompletenessMark
+     */
+    public function setWorkcompletenessMark($workcompletenessMark)
+    {
+        $this->workcompletenessMark = $workcompletenessMark;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getWorkqualityMark()
+    {
+        return $this->workqualityMark;
+    }
+
+    /**
+     * @param mixed $workqualityMark
+     */
+    public function setWorkqualityMark($workqualityMark)
+    {
+        $this->workqualityMark = $workqualityMark;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getWorkcompletenessComment()
+    {
+        return $this->workcompletenessComment;
+    }
+
+    /**
+     * @param mixed $workcompletenessComment
+     */
+    public function setWorkcompletenessComment($workcompletenessComment)
+    {
+        $this->workcompletenessComment = $workcompletenessComment;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getWorkqualityComment()
+    {
+        return $this->workqualityComment;
+    }
+
+    /**
+     * @param mixed $workqualityComment
+     */
+    public function setWorkqualityComment($workqualityComment)
+    {
+        $this->workqualityComment = $workqualityComment;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCommunicationMark()
+    {
+        return $this->communicationMark;
+    }
+
+    /**
+     * @param mixed $communicationMark
+     */
+    public function setCommunicationMark($communicationMark)
+    {
+        $this->communicationMark = $communicationMark;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCommunicationComment()
+    {
+        return $this->communicationComment;
+    }
+
+    /**
+     * @param mixed $communicationComment
+     */
+    public function setCommunicationComment($communicationComment)
+    {
+        $this->communicationComment = $communicationComment;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSupervisionattitudeMark()
+    {
+        return $this->supervisionattitudeMark;
+    }
+
+    /**
+     * @param mixed $supervisionattitudeMark
+     */
+    public function setSupervisionattitudeMark($supervisionattitudeMark)
+    {
+        $this->supervisionattitudeMark = $supervisionattitudeMark;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSupervisionattitudeComment()
+    {
+        return $this->supervisionattitudeComment;
+    }
+
+    /**
+     * @param mixed $supervisionattitudeComment
+     */
+    public function setSupervisionattitudeComment($supervisionattitudeComment)
+    {
+        $this->supervisionattitudeComment = $supervisionattitudeComment;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getGolbalappricationMark()
+    {
+        return $this->golbalappricationMark;
+    }
+
+    /**
+     * @param mixed $golbalappricationMark
+     */
+    public function setGolbalappricationMark($golbalappricationMark)
+    {
+        $this->golbalappricationMark = $golbalappricationMark;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getStrengthsComment()
+    {
+        return $this->strengthsComment;
+    }
+
+    /**
+     * @param mixed $strengthsComment
+     */
+    public function setStrengthsComment($strengthsComment)
+    {
+        $this->strengthsComment = $strengthsComment;
+    }
+
+
+    /**
+     * @return mixed
+     */
+    public function getIntegration()
+    {
+        return $this->integration;
+    }
+
+    /**
+     * @param mixed $integration
+     */
+    public function setIntegration($integration)
+    {
+        $this->integration = $integration;
+    }
+
+    /**
+     * @return datetime
+     */
+    public function getDate()
+    {
+        return $this->date;
+    }
+
+    /**
+     * @param datetime $date
+     */
+    public function setDate($date)
+    {
+        $this->date = $date;
+    }
+    /**
+     * @return mixed
+     */
+    public function getInternship()
+    {
+        return $this->internship;
+    }
+
+    /**
+     * @param mixed $internship
+     */
+    public function setInternship($internship)
+    {
+        $this->internship = $internship;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getWeaknessComment()
+    {
+        return $this->weaknessComment;
+    }
+
+    /**
+     * @param mixed $weaknessComment
+     */
+    public function setWeaknessComment($weaknessComment)
+    {
+        $this->weaknessComment = $weaknessComment;
+    }
+
+}

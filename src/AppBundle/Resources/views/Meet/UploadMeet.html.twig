@@ -1,0 +1,44 @@
+{% extends '::base.html.twig' %}
+{% block content %}
+    {% form_theme form 'bootstrap_3_horizontal_layout.html.twig' %}
+    <div class="row">
+        <div class="col-lg-2">
+        </div>
+        <div class="col-lg-8">
+            <div class="main-box">
+                <h2>{{ 'Upload meets' |trans }}</h2> <br>
+                <div class="container">
+                    {{ form_start(form) }}
+
+                    <br>
+                    <div class="row">
+                        {{ form_label(form.name) }}
+                        <div class='col-md-9'>
+                            <div class="form-group">
+                                {{ form_widget(form.name) }}
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        {{ form_label(form.file) }}
+                        <div class='col-md-9'>
+                            <div class="form-group">
+                                {{ form_widget(form.file) }}
+                            </div>
+                        </div>
+                    </div>
+
+                    <br>
+                    {{ form_widget(form.affect, {'attr': {'class': 'btn btn-primary'}}) }}
+                    {{ form_end(form) }}
+                </div>
+                <div class="col-md-10">
+                    <br><br><br><br><br><br><br><br><br>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
