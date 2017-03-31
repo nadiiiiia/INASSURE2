@@ -1,20 +1,48 @@
-<html>
-<head>
-</head>
 
+<html lang="fr">
+  <head>
+<style>
+table, td, th {    
+    border: 1px solid black;
+    text-align: left;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.apf{
+        font-style: italic;
+        border-bottom: 2px solid #4f81bc;
+        margin-right: 70px;
+        margin-left: 70px;
+        margin-top: 100px;
+        color:#4f81bc;
+}
+
+</style>
+      
+    <title>Fiche RDV</title>
+
+  </head>
 <body>
-<p><strong>APF&nbsp;</strong></p>
-<table style="height: 43px;" border="1px" width="560">
+    <div class="container">
+
+        <div class="row">
+            
+            <div ><p class="apf"><strong>APF&nbsp;</strong></p></div>
+<table class="table table-bordered" >
     <tbody>
     <tr>
         <td>RDV fix&eacute; pour le:</td>
-        <td>{{dateRDV}}</td>
+        <td><h3><strong>{{dateRDV}}</strong></h3></td>
         <td>Heure:</td>
-        <td colspan="3">$heure_RDV$</td>
+        <td colspan="3">{{heureRDV}}</td>
     </tr>
     <tr>
-        <td>Nom: {{NOM}}</td>
-        <td>&nbsp;</td>
+        <td>Nom: </td>
+        <td>{{NOM}}</td>
         <td>Pr&eacute;nom:</td>
         <td colspan="3">{{Surname}}</td>
     </tr>
@@ -24,26 +52,34 @@
     </tr>
     <tr>
         <td>NPA:</td>
+		
         <td>{{NPA}}</td>
+	
         <td>localit&eacute;</td>
         <td colspan="3">{{localite}}</td>
     </tr>
     <tr>
-        <td>T&eacute;l&eacute;phone:{{tel1}}</td>
-        <td>$NC$</td>
+        <td>T&eacute;l&eacute;phone:</td>
+        <td>{{tel1}}</td>
         <td>Natel:</td>
-        <td colspan="3">$natel$</td>
+			 
+        <td colspan="3">{{natel}}</td>
+	
+	
+		
     </tr>
     <tr>
         <td>Profession:</td>
         <td>{{Profession}}</td>
         <td>ND de personnes dans le m&eacute;nage:</td>
-        <td colspan="3">$nb_personnes$</td>
+        <td colspan="3">{{nb_personnes}}</td>
     </tr>
     </tbody>
 </table>
 <p>&nbsp;</p>
-<table style="height: 40px;" border="1px" width="556">
+
+
+<table >
     <tbody>
     <tr>
         <td>&nbsp;</td>
@@ -56,43 +92,43 @@
     </tr>
     <tr>
         <td>Sexe F ou &nbsp;M</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
+        <td>Mr</td>
+        <td>Mme</td>
+        <td>ENF1</td>
+        <td>ENF2</td>
+        <td>ENF3</td>
+        <td>ENF4</td>
     </tr>
     <tr>
         <td>Date d&rsquo;anniversaire</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
+        <td>{{age}}</td>
+        <td>{{ageConj}}</td>
+        <td>{{AgeEnfant1}}</td>
+        <td>{{AgeEnfant2}}</td>
+        <td>{{AgeEnfant3}}</td>
+        <td>{{AgeEnfant4}}</td>
     </tr>
     <tr>
         <td>Ass. De Base</td>
+        <td>{{MrAssBase}}</td>
         <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
+        <td>{{Enf1AssBase}}</td>
+        <td>{{Enf2AssBase}}</td>
+        <td>{{Enf3AssBase}}</td>
+        <td>{{Enf4AssBase}}</td>
     </tr>
     <tr>
         <td>Franchise</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
+        <td>{{MrFranchise}}</td>
+        <td>{{MmeFranchise}}</td>
+        <td>{{Enf1Franchise}}</td>
+        <td>{{Enf2Franchise}}</td>
+        <td>{{Enf3Franchise}}</td>
+        <td>{{Enf4Franchise}}</td>
     </tr>
     <tr>
         <td>Ass. Des LCA</td>
-        <td>&nbsp;</td>
+        <td>{{MrAssLCA}}</td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
@@ -128,60 +164,69 @@
     </tr>
     </tbody>
 </table>
-<p>​</p>
-<table style="height: 40px;" border="1px" width="283">
+
+
+
+<p>&nbsp;</p>
+
+
+<table style="height: 40px;"  width="290">
     <tbody>
     <tr>
         <td>Assurance&nbsp;</td>
         <td>Compagnie&nbsp;</td>
-        <td>Depuis quand&nbsp;</td>
+        <td >Depuis quand&nbsp;</td>
     </tr>
     <tr>
         <td>Assurance Vie</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
+        <td>{{assVie}}</td>
+        <td>{{dateAssVie}}</td>
     </tr>
     <tr>
         <td>Voiture&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
+        <td>{{assVoiture}}</td>
+        <td>{{dateAssVoiture}}</td>
     </tr>
     <tr>
         <td>M&eacute;nage&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
+        <td>{{assMenage}}</td>
+        <td>{{dateAssMenage}}</td>
     </tr>
     <tr>
         <td>Protection juridique&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
+        <td>{{assJuridique}}</td>
+        <td>{{dateAssJuridique}}</td>
     </tr>
     </tbody>
 </table>
 <p>&nbsp;</p>
-<p>Remarques t&eacute;l&eacute;phonistes :&nbsp;</p>
-<table style="height: 40px;" border="1px" width="517">
+<p><strong>Remarques t&eacute;l&eacute;phonistes :&nbsp;</strong></p>
+<table style="height: 40px;"  width="517">
     <tbody>
     <tr>
-        <td colspan="4"><br /><br /></td>
+        <td colspan="4"><br />{{Observation}}<br /></td>
     </tr>
     <tr>
         <td>Nom de la t&eacute;l&eacute;phoniste :</td>
-        <td>&nbsp;</td>
+        <td>{{Agent}}</td>
         <td>Date d&rsquo;appel :</td>
-        <td>&nbsp;</td>
+        <td>{{appel}}</td>
     </tr>
     </tbody>
 </table>
 <p>&nbsp;</p>
-<p>Feed-back Conseiller:&nbsp;</p>
-<table style="height: 21px;" border="1px" width="515">
+<p><strong>Feed-back Conseiller:&nbsp;</strong></p>
+<table  width="515">
     <tbody>
     <tr>
-        <td>&nbsp;</td>
+         <td style="height: 100px;">&nbsp;</td>
     </tr>
     </tbody>
 </table>
+        </div>
+    </div>
+
+
 
 </body>
 
