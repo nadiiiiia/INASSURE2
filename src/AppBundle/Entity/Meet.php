@@ -677,7 +677,7 @@ class Meet {
     private $cmkRdvDateCommecial;
 
     /**
-     * @ORM\Column(name="cmk_observation_comm", type="date")
+     * @ORM\Column(name="cmk_observation_comm", type="string")
      */
     private $cmkObservationCommecial;
 
@@ -888,6 +888,19 @@ class Meet {
     public function getAge() {
         return $this->age;
     }
+	
+	/**
+     * @return mixed
+     */
+    public function getBirthYearMr() {
+        if( $this->age == Null || $this->age == 0 || $this->age == ''){
+		return ''; 
+		} else {
+		return 2017- $this->age;
+           }		
+		
+    }
+	
 
     /**
      * @return mixed
@@ -895,19 +908,59 @@ class Meet {
     public function getAgeEnfant1() {
         return $this->ageEnfant1;
     }
+	
+		/**
+     * @return mixed
+     */
+    public function getBirthYearEnfant1() {
+        if( $this->ageEnfant1 == Null || $this->ageEnfant1 == 0 || $this->ageEnfant1 == ''){
+		return ''; 
+		} else {
+		return 2017- $this->ageEnfant1;
+           }		
+		
+    }
 
     /**
      * @return mixed
      */
     public function getAgeEnfant2() {
         return $this->ageEnfant2;
+    }	
+		
+		
+	/**
+     * @return mixed
+     */
+    public function getBirthYearEnfant2() {
+        if( $this->ageEnfant2 == Null || $this->ageEnfant2 == 0 || $this->ageEnfant2 == ''){
+		return ''; 
+		} else {
+		return 2017- $this->ageEnfant2;
+           }		
+		
     }
+	
+	
 
     /**
      * @return mixed
      */
     public function getAgeEnfant3() {
         return $this->ageEnfant3;
+    }
+	
+			
+	/**
+     * @return mixed
+     */
+    public function getBirthYearEnfant3() {
+        if( $this->ageEnfant3 == Null || $this->ageEnfant3 == 0 || $this->ageEnfant3 == ''){
+		return ''; 
+		} else {
+		return 2017- $this->ageEnfant3;
+           }		
+		
     }
 
     /**
@@ -916,6 +969,19 @@ class Meet {
     public function getAgeEnfant4() {
         return $this->ageEnfant4;
     }
+	
+			
+	/**
+     * @return mixed
+     */
+    public function getBirthYearEnfant4() {
+        if( $this->ageEnfant4 == Null || $this->ageEnfant4 == 0 || $this->ageEnfant4 == ''){
+		return ''; 
+		} else {
+		return 2017- $this->ageEnfant4;
+           }		
+		
+    }
 
     /**
      * @return mixed
@@ -923,7 +989,18 @@ class Meet {
     public function getAgeConjoint() {
         return $this->ageConjoint;
     }
-
+	
+	/**
+     * @return mixed
+     */
+    public function getBirthYearConjoint() {
+        if( $this->ageConjoint == Null || $this->ageConjoint == 0 || $this->ageConjoint == ''){
+		return ''; 
+		} else {
+		return 2017- $this->ageConjoint;
+		}
+		}
+	
     /**
      * @return mixed
      */
@@ -1413,7 +1490,21 @@ class Meet {
     public function getCmkSfieldNameCompany() {
         return $this->cmkSfieldNameCompany;
     }
-
+	
+    /**
+     * @return mixed
+     */
+    public function getAssuance() {
+	        if( $this->cmkSfieldNameCompany == Null || $this->cmkSfieldNameCompany == 0 || $this->cmkSfieldNameCompany == ''){
+		return 'Non Communiqu&eacute;'; 
+		} else {
+		 return $this->cmkSfieldNameCompany;
+           }
+       
+    }
+	
+	
+	
     /**
      * @return mixed
      */
@@ -1653,7 +1744,8 @@ class Meet {
     }
 
     /**
-     * @return mixed
+	 * 
+     * @return \DateTime
      */
     public function getCmkSfieldHMRdvCommercial() {
         return $this->cmkSfieldHMRdvCommercial;
@@ -1709,10 +1801,11 @@ class Meet {
     }
 
     /**
-     * @return mixed
+     * @return \DateTime
      */
     public function getCmkRdvDateCommecial() {
         return $this->cmkRdvDateCommecial;
+		//(new \DateTime())->format('Y-m-d H:i:s');
     }
 
     /**
@@ -2731,7 +2824,7 @@ class Meet {
     }
 
     /**
-     * @param mixed $cmkRdvDateCommecial
+     * @param \DateTime $cmkRdvDateCommecial
      */
     public function setCmkRdvDateCommecial($cmkRdvDateCommecial) {
         $this->cmkRdvDateCommecial = $cmkRdvDateCommecial;
